@@ -1,16 +1,15 @@
 package main
 
 import (
+	"eWordy/handlers"
 	"net/http"
-	"ewordy/handlers"
 )
 
-type Data struct {
-	EnglWord    string
-	RusTrue     string
-	RusVariants []string
-}
-
 func main() {
-	http.HandleFunc("/", handlers.getPage)
+	http.HandleFunc("/", handlers.GetPage)
+
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		panic("Something is wrong - " + err.Error())
+	}
 }
